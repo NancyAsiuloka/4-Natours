@@ -34,6 +34,10 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
+app.post('/api/v1/tours', (req,res)=> {
+
+});
+
 // starting up a server
 const port = 3000;
 app.listen(port, () => {
