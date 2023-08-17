@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
+// using this middleware to handle the post request
+app.use(express.json());
+
 // Define Route in express
 // routing means determining how an applicaton responds to a certain client request to a certain URL
 /*
