@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const fs = require('fs');
 
 // Define Route in express
 // routing means determining how an applicaton responds to a certain client request to a certain URL
@@ -16,6 +17,10 @@ app.post('/', (req, res) => {
 */
 
 // Starting API handling request
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/ dev-data/tours-simple.json`));
+
+
+
 app.get('/api/v1/tours', (req,res) => {
     // what to do when someone hits this route
     // we have to send back all the tours
