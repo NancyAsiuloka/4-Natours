@@ -18,14 +18,17 @@ app.post('/', (req, res) => {
 
 // Starting API handling request
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/ dev-data/tours-simple.json`)
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
 app.get('/api/v1/tours', (req, res) => {
   // what to do when someone hits this route
   // we have to send back all the tours
   res.status(200).json({
-    status: 'sucess',
+    status: 'success',
+    // do this whenever u are sending multiple objects
+
+    results: tours.length,
     data: {
         tours: tours
     }
