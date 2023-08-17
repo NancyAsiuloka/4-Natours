@@ -16,7 +16,10 @@ app.post('/', (req, res) => {
 */
 
 // Starting API handling request
+app.get('/api/v1/tours', (req,res) => {
+    // what to do when someone hits this route
 
+})
 
 
 // starting up a server
