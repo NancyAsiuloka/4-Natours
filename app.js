@@ -40,7 +40,7 @@ app.get('/api/v1/tours', (req, res) => {
 
 // post to create a new tours
 app.post('/api/v1/tours', (req,res)=> {
-
+    console.log(req.body);
 });
 
 // starting up a server
