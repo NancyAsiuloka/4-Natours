@@ -27,7 +27,6 @@ app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({
     status: 'success',
     // do this whenever u are sending multiple objects
-
     results: tours.length,
     data: {
         tours: tours
