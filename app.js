@@ -17,21 +17,23 @@ app.post('/', (req, res) => {
 */
 
 // Starting API handling request
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/ dev-data/tours-simple.json`));
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/ dev-data/tours-simple.json`)
+);
 
-
-
-app.get('/api/v1/tours', (req,res) => {
-    // what to do when someone hits this route
-    // we have to send back all the tours
-
-})
-
+app.get('/api/v1/tours', (req, res) => {
+  // what to do when someone hits this route
+  // we have to send back all the tours
+  res.status(200).json({
+    status: 'sucess',
+    data: {
+        tours: tours
+    }
+  });
+});
 
 // starting up a server
 const port = 3000;
 app.listen(port, () => {
-    console.log(`App running on ${port}... `);
+  console.log(`App running on ${port}... `);
 });
-
-
