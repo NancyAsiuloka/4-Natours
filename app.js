@@ -15,6 +15,10 @@ app.post('/', (req, res) => {
 });
 */
 
+// Starting API handling request
+
+
+
 // starting up a server
 const port = 3000;
 app.listen(port, () => {
