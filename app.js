@@ -18,6 +18,7 @@ app.post('/', (req, res) => {
 // Starting API handling request
 app.get('/api/v1/tours', (req,res) => {
     // what to do when someone hits this route
+    // we have to send back all the tours
 
 })
 
