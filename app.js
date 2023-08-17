@@ -21,6 +21,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+// get to get all the tours
 app.get('/api/v1/tours', (req, res) => {
   // what to do when someone hits this route
   // we have to send back all the tours
@@ -34,6 +35,7 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
+// post to create a new tours
 app.post('/api/v1/tours', (req,res)=> {
 
 });
