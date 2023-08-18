@@ -6,19 +6,6 @@ const fs = require('fs');
 // using this middleware to handle the post request
 app.use(express.json());
 
-// Define Route in express
-// routing means determining how an applicaton responds to a certain client request to a certain URL
-/*
-app.get('/', (req, res) => {
-    res.status(200)
-    .json({message: 'Hello from the server side!', app: 'Natours'});
-});
-
-app.post('/', (req, res) => {
-    res.send('You can post to this endpoint...')
-});
-*/
-
 // Starting API handling request
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
