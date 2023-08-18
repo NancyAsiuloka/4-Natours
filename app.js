@@ -41,10 +41,11 @@ app.get('/api/v1/tours', (req, res) => {
 */
 
 // getting data by its id
-app.get('/api/tours/:id', (req, res) => {
+app.get('/api/v1/tours/:id', (req, res) => {
     console.log(req.params);
+
     res.status(200).json({
-        status: 'success',
+        status: 'success'
         // results: tours.length,
         // data: {
         //     tours
