@@ -41,12 +41,22 @@ app.get('/api/v1/tours', (req, res) => {
 */
 
 // getting data by its id
+// how to specify params in the URL
 app.get('/api/v1/tours/:id', (req, res) => {
     // req.params is an object that automatically assign the value to our parameter that we define
+    // how to read parameters from the url by using req.params
     console.log(req.params);
-
+    // we used the id(parameter) to find a tour with the exact id
     const id  = req.params.id * 1; //converting strings to number
-    const tour = tours.find(el => el.id === req.params)
+    const tour = tours.find(el => el.id === id)
+
+    // if(id > tours.length) {
+        if(!tour){
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Invalid id'
+        });
+    }
 
     res.status(200).json({
         status: 'success',
