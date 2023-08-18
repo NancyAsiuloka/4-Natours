@@ -49,11 +49,10 @@ app.get('/api/v1/tours/:id', (req, res) => {
     const tour = tours.find(el => el.id === req.params)
 
     res.status(200).json({
-        status: 'success'
-        // results: tours.length,
-        // data: {
-        //     tours
-        // }
+        status: 'success',
+        data: {
+            tours
+        }
     });
 });
 
