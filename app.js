@@ -11,9 +11,8 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
-/*
-// get to get all the tours
-app.get('/api/v1/tours', (req, res) => {
+// get all tours
+const getAllTours = (req, res) => {
   // what to do when someone hits this route
   // we have to send back all the tours
   res.status(200).json({
@@ -24,12 +23,12 @@ app.get('/api/v1/tours', (req, res) => {
       tours: tours,
     },
   });
-});
-*/
+};
+
 
 // getting data by its id
 // how to specify params in the URL
-app.get('/api/v1/tours/:id', (req, res) => {
+const getTour = (req, res) => {
   // req.params is an object that automatically assign the value to our parameter that we define
   // how to read parameters from the url by using req.params
   console.log(req.params);
@@ -51,11 +50,12 @@ app.get('/api/v1/tours/:id', (req, res) => {
       tour,
     },
   });
-});
+};
 
-// post to create a new tours
-app.post('/api/v1/tours', (req, res) => {
-  // console.log(req.body);
+
+// creating a new tour
+const createTour = (req, res) => {
+      // console.log(req.body);
   // figure out the id of the new object
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
@@ -74,42 +74,66 @@ app.post('/api/v1/tours', (req, res) => {
       });
     }
   );
-});
+};
 
 // Handling Patch requests to update data
 // we have 2 http methods to update data(put $ patch)
 // with put, we expect our application receives the entire new updated object
 // with patch, we expect the properties that should be updated on the object
-app.patch('/api/v1/tours/:id', (req, res) => {
-  if(req.params.id * 1> tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid id',
-    });
-  }
+const updateTour = (req, res) => {
+    if (req.params.id * 1 > tours.length) {
+        return res.status(404).json({
+          status: 'fail',
+          message: 'Invalid id',
+        });
+      }
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour: '<Updated tour here...>',
-    },
-  });
-});
+      res.status(200).json({
+        status: 'success',
+        data: {
+          tour: '<Updated tour here...>',
+        },
+      });
+};
 
 // Handling the delete request
-app.delete('/api/v1/tours/:id', (req, res) => {
-    if(req.params.id * 1> tours.length) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'Invalid id',
-      });
-    }
+const deleteTour = (req, res) => {
+    if (req.params.id * 1 > tours.length) {
+        return res.status(404).json({
+          status: 'fail',
+          message: 'Invalid id',
+        });
+      }
 
-    res.status(204).json({
-      status: 'success',
-      data: null
-    });
-  });
+      res.status(204).json({
+        status: 'success',
+        data: null,
+      });
+};
+
+// get to get all the tours
+// app.get('/api/v1/tours', getAllTours);
+
+// post to create a new tours
+// app.post('/api/v1/tours', createTour);
+
+// get Tour
+// app.get('/api/v1/tours/:id', getTour);
+
+// update Tours
+// app.patch('/api/v1/tours/:id', updateTour);
+
+// Handling the delete request
+// app.delete('/api/v1/tours/:id', deleteTour);
+
+app.route('/api/v1/tours')
+.get(getAllTours)
+.post(createTour);
+
+app.route('/api/v1/tours/:id')
+.get(getTour)
+.patch(updateTour)
+.delete(deleteTour);
 
 // starting up a server
 const port = 3000;
