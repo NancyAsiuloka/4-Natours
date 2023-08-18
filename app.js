@@ -40,15 +40,15 @@ app.get('/api/v1/tours', (req, res) => {
 });
 */
 
-app.get('/api/tours', (req, res) => {
+app.get('/api/tours/:id', (req, res) => {
     res.status(200).json({
         status: 'success',
-        results: tours.length,
-        data: {
-            tours
-        }
-    })
-})
+        // results: tours.length,
+        // data: {
+        //     tours
+        // }
+    });
+});
 
 // post to create a new tours
 app.post('/api/v1/tours', (req, res) => {
