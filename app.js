@@ -33,14 +33,34 @@ app.get('/api/v1/tours', (req, res) => {
     // do this whenever u are sending multiple objects
     results: tours.length,
     data: {
-        tours: tours
-    }
+      tours: tours,
+    },
   });
 });
 
 // post to create a new tours
-app.post('/api/v1/tours', (req,res)=> {
-    console.log(req.body);
+app.post('/api/v1/tours', (req, res) => {
+  // console.log(req.body);
+  // figure out the id of the new object
+  const newId = tours[tours.length - 1].id + 1;
+  const newTour = Object.assign({ id: newId }, req.body);
+
+  tours.push(newTour);
+
+  fs.writeFile(
+    `${__dirname}/dev-data/data/tours-simple.json`,
+    JSON.stringify(tours),
+    (err) => {
+      res.status(201).json({
+        status: 'success',
+        data: {
+          tour: newTour,
+        }
+      });
+    }
+  );
+
+//   res.send('Done!');
 });
 
 // starting up a server
