@@ -109,8 +109,30 @@ app.patch('/api/v1/tours/:id', (req, res) => {
   });
 });
 
+// Handling the delete request
+app.delete('/api/v1/tours/:id', (req, res) => {
+    if(req.params.id * 1> tours.length) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Invalid id',
+      });
+    }
+
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
+  });
+
 // starting up a server
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on ${port}... `);
 });
+
+/*
+200 OK
+204 NO CONTENT
+201 CREATED
+404 NOT FOUND
+*/
