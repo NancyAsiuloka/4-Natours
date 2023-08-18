@@ -43,27 +43,27 @@ app.get('/api/v1/tours', (req, res) => {
 // getting data by its id
 // how to specify params in the URL
 app.get('/api/v1/tours/:id', (req, res) => {
-    // req.params is an object that automatically assign the value to our parameter that we define
-    // how to read parameters from the url by using req.params
-    console.log(req.params);
-    // we used the id(parameter) to find a tour with the exact id
-    const id  = req.params.id * 1; //converting strings to number
-    const tour = tours.find(el => el.id === id)
+  // req.params is an object that automatically assign the value to our parameter that we define
+  // how to read parameters from the url by using req.params
+  console.log(req.params);
+  // we used the id(parameter) to find a tour with the exact id
+  const id = req.params.id * 1; //converting strings to number
+  const tour = tours.find((el) => el.id === id);
 
-    // if(id > tours.length) {
-        if(!tour){
-        return res.status(404).json({
-            status: 'fail',
-            message: 'Invalid id'
-        });
-    }
-
-    res.status(200).json({
-        status: 'success',
-        data: {
-            tour
-        }
+  // if(id > tours.length) {
+  if (!tour) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid id',
     });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour,
+    },
+  });
 });
 
 // post to create a new tours
@@ -83,7 +83,7 @@ app.post('/api/v1/tours', (req, res) => {
         status: 'success',
         data: {
           tour: newTour,
-        }
+        },
       });
     }
   );
@@ -94,14 +94,20 @@ app.post('/api/v1/tours', (req, res) => {
 // with put, we expect our application receives the entire new updated object
 // with patch, we expect the properties that should be updated on the object
 app.patch('/api/v1/tours/:id', (req, res) => {
-    res.status(200).json({
-        status: 'success',
-        data: {
-            tour: '<Updated tour here...>'
-        }
+  if(req.params.id * 1> tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid id',
     });
-})
+  }
 
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<Updated tour here...>',
+    },
+  });
+});
 
 // starting up a server
 const port = 3000;
