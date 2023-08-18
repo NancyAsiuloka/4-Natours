@@ -24,6 +24,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+/*
 // get to get all the tours
 app.get('/api/v1/tours', (req, res) => {
   // what to do when someone hits this route
@@ -37,6 +38,17 @@ app.get('/api/v1/tours', (req, res) => {
     },
   });
 });
+*/
+
+app.get('/api/tours', (req, res) => {
+    res.status(200).json({
+        status: 'success',
+        results: tours.length,
+        data: {
+            tours
+        }
+    })
+})
 
 // post to create a new tours
 app.post('/api/v1/tours', (req, res) => {
