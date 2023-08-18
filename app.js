@@ -87,9 +87,21 @@ app.post('/api/v1/tours', (req, res) => {
       });
     }
   );
-
-//   res.send('Done!');
 });
+
+// Handling Patch requests to update data
+// we have 2 http methods to update data(put $ patch)
+// with put, we expect our application receives the entire new updated object
+// with patch, we expect the properties that should be updated on the object
+app.patch('/api/v1/tours/:id', (req, res) => {
+    res.status(200).json({
+        status: 'success',
+        data: {
+            tour: '<Updated tour here...>'
+        }
+    });
+})
+
 
 // starting up a server
 const port = 3000;
