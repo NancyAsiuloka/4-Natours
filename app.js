@@ -42,6 +42,7 @@ app.get('/api/v1/tours', (req, res) => {
 
 // getting data by its id
 app.get('/api/tours/:id', (req, res) => {
+    console.log(req.params);
     res.status(200).json({
         status: 'success',
         // results: tours.length,
