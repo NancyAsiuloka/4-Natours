@@ -45,6 +45,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
     // req.params is an object that automatically assign the value to our parameter that we define
     console.log(req.params);
 
+    const id  = req.params.id * 1; //converting strings to number
+    const tour = tours.find(el => el.id === req.params)
+
     res.status(200).json({
         status: 'success'
         // results: tours.length,
