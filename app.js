@@ -41,7 +41,7 @@ app.get('/api/v1/tours', (req, res) => {
 */
 
 // getting data by its id
-app.get('/api/v1/tours/:id', (req, res) => {
+app.get('/api/v1/tours/:id/:x/:y', (req, res) => {
     // req.params is an object that automatically assign the value to our parameter that we define
     console.log(req.params);
 
