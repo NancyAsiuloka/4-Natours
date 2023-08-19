@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     //adding the current time to the request
     req.requestTime = new Date().toISOString;
-    ne
+    next();
 });
 
 
