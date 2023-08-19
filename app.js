@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const app = express();
 const fs = require('fs');
 
-// First middlewares
+// 1: First middlewares
 // using this middleware to handle the post request
 app.use(express.json());
 
@@ -29,7 +29,7 @@ const tours = JSON.parse(
 );
 
 
-// ROUTE HANDLERS
+//2: ROUTE HANDLERS
 // get all tours
 const getAllTours = (req, res) => {
   // what to do when someone hits this route
@@ -147,6 +147,7 @@ const deleteTour = (req, res) => {
 // Handling the delete request
 // app.delete('/api/v1/tours/:id', deleteTour);
 
+// 3: ROUTES
 app.route('/api/v1/tours')
 .get(getAllTours)
 .post(createTour);
@@ -156,7 +157,8 @@ app.route('/api/v1/tours/:id')
 .patch(updateTour)
 .delete(deleteTour);
 
-// starting up a server
+
+// 4: START SERVER
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on ${port}... `);
