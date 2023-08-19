@@ -15,7 +15,8 @@ app.use((req, res, next) => {
 // creating another middleware to manipulate the request object
 app.use((req, res, next) => {
     //adding the current time to the request
-    req
+    req.requestTime = new Date().toISOString;
+    ne
 });
 
 
