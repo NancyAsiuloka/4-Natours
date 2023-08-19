@@ -12,6 +12,8 @@ app.use((req, res, next) => {
     next();
 });
 
+// creating another middleware to manipulate the request object
+
 // Starting API handling request
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
