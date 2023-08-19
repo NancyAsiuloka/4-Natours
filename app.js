@@ -6,6 +6,7 @@ const fs = require('fs');
 
 // 1: First middlewares
 // using this middleware to handle the post request
+app.use(morgan('dev'));
 app.use(express.json());
 
 // creating our own Middleware functions
