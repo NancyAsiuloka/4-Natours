@@ -7,7 +7,9 @@ const fs = require('fs');
 app.use(express.json());
 
 // creating our own Middleware functions
-app.use
+app.use((req, res, next) => {
+
+});
 
 // Starting API handling request
 const tours = JSON.parse(
