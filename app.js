@@ -30,7 +30,7 @@ const tours = JSON.parse(
 );
 
 
-//2: ROUTE HANDLERS
+//2: ROUTE HANDLERS FOR TOURS
 // get all tours
 const getAllTours = (req, res) => {
   // what to do when someone hits this route
@@ -132,6 +132,11 @@ const deleteTour = (req, res) => {
         data: null,
       });
 };
+
+// ROUTE HANDLER FOR USERS
+
+
+
 
 // get to get all the tours
 // app.get('/api/v1/tours', getAllTours);
