@@ -6,6 +6,9 @@ const fs = require('fs');
 // using this middleware to handle the post request
 app.use(express.json());
 
+// craeting our own Middleware functions
+app
+
 // Starting API handling request
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
