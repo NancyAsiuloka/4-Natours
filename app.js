@@ -9,6 +9,7 @@ app.use(express.json());
 // creating our own Middleware functions
 app.use((req, res, next) => {
     console.log('Hello from the middleware');
+    next();
 });
 
 // Starting API handling request
