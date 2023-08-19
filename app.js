@@ -13,6 +13,11 @@ app.use((req, res, next) => {
 });
 
 // creating another middleware to manipulate the request object
+app.use((req, res, next) => {
+
+});
+
+
 
 // Starting API handling request
 const tours = JSON.parse(
