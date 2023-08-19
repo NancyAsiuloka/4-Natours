@@ -1,7 +1,9 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 const fs = require('fs');
+
 
 // using this middleware to handle the post request
 app.use(express.json());
