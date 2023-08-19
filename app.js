@@ -6,7 +6,7 @@ const fs = require('fs');
 // using this middleware to handle the post request
 app.use(express.json());
 
-// craeting our own Middleware functions
+// creating our own Middleware functions
 app
 
 // Starting API handling request
