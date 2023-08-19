@@ -5,8 +5,6 @@ const app = express();
 const fs = require('fs');
 
 // First middlewares
-
-
 // using this middleware to handle the post request
 app.use(express.json());
 
@@ -30,6 +28,8 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+
+// ROUTE HANDLERS
 // get all tours
 const getAllTours = (req, res) => {
   // what to do when someone hits this route
