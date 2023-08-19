@@ -30,8 +30,10 @@ const tours = JSON.parse(
 const getAllTours = (req, res) => {
   // what to do when someone hits this route
   // we have to send back all the tours
+  console.log(req.requestTime);
   res.status(200).json({
     status: 'success',
+    requestAt: req.requestTime,
     // do this whenever u are sending multiple objects
     results: tours.length,
     data: {
