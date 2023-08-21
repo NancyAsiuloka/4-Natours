@@ -8,7 +8,7 @@ const tours = JSON.parse(
 //2: ROUTE HANDLERS FOR TOURS
 
 // Check id
-exports.checkId = (req, res, next, val) => {
+exports.checkID = (req, res, next, val) => {
   console.log(`Tour id is: ${val}`);
 
   if(req.params.id = 1 > tours.length){
