@@ -6,6 +6,9 @@ const tours = JSON.parse(
   );
 
 //2: ROUTE HANDLERS FOR TOURS
+
+// Check id
+
 // get all tours
 exports.getAllTours = (req, res) => {
   // what to do when someone hits this route
