@@ -20,6 +20,10 @@ exports.checkID = (req, res, next, val) => {
   next();
 }
 
+exports.checkBody = (req, res, next) => {
+
+};
+
 
 // get all tours
 exports.getAllTours = (req, res) => {
