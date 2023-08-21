@@ -8,6 +8,10 @@ const tours = JSON.parse(
 //2: ROUTE HANDLERS FOR TOURS
 
 // Check id
+exports.checkId = (req, res, next, val) => {
+  console.log(`Tour id is: ${val}`);
+}
+
 
 // get all tours
 exports.getAllTours = (req, res) => {
