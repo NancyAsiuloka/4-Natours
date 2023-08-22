@@ -1,4 +1,7 @@
+const dotenv = require('dotenv');
 const app = require('./app');
+
+
 
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
