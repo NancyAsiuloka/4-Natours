@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const app = require('./app');
 
-
+dotenv.config({ path: './config.env' });
 
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
