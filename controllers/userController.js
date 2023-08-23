@@ -19,8 +19,8 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-    console.log(req.params);
     const id = req.params.id * 1; // Convert the parameter to a number
+    console.log('Searching for user with ID:', id);
     const user = users.find((el) => el.id === id);
 
     if (!user) {
