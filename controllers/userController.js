@@ -60,19 +60,10 @@ exports.createUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-    if (req.params.id * 1 > users.length) {
-        return res.status(404).json({
-          status: 'fail',
-          message: 'Invalid id',
-        });
-      }
-
-      res.status(200).json({
-        status: 'success',
-        data: {
-          user: '<Updated user here...>',
-        },
-      });
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    });
 };
 
 exports.deleteUser = (req, res) => {
