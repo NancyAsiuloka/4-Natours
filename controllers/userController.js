@@ -7,6 +7,8 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
+    const id = req.params.id * 1; //converting strings to number
+    const user = user.find((el) => el.id === id);
     res.status(500).json({
         status: 'error',
         message: 'This route is not yet defined!'
