@@ -8,7 +8,10 @@ const app = express();
 
 // 1: First middlewares
 // using this middleware to handle the post request
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
 app.use(express.json());
 // how to serve static files from a folder & not from a route
 app.use(express.static(`${__dirname}/public`));
