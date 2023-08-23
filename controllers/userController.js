@@ -1,3 +1,9 @@
+const fs = require('fs');
+
+const users = JSON.parse(
+    fs.readFileSync(`${__dirname}/../dev-data/data/users.json`)
+  );
+
 // ROUTE HANDLER FOR USERS
 exports.getAllUsers = (req, res) => {
     res.status(500).json({
@@ -7,22 +13,24 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-    const id = req.params.id * 1; //converting strings to number
-    const user = user.find((el) => el.id === id);
+    const id = req.params.id * 1; // Convert the parameter to a number
+    const user = users.find((el) => el.id === id);
 
-    // if (!tour) {
-    //     return res.status(404).json({
-    //       status: 'fail',
-    //       message: 'Invalid id',
-    //     });
-    if(!user) {
-        res.status(500).json({
+    if (!user) {
+        res.status(404).json({
             status: 'error',
-            message: 'This route is not yet defined!'
+            message: 'User not found'
+        });
+    } else {
+        res.status(200).json({
+            status: 'success',
+            data: {
+                user: user
+            }
         });
     }
-
 };
+
 
 exports.createUser = (req, res) => {
     res.status(500).json({
