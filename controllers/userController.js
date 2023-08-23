@@ -6,13 +6,20 @@ const users = JSON.parse(
 
 // ROUTE HANDLER FOR USERS
 exports.getAllUsers = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
+    console.log(req.requestTime);
+    res.status(200).json({
+      status: 'success',
+      requestAt: req.requestTime,
+      // do this whenever u are sending multiple objects
+      results: users.length,
+      data: {
+        users: users,
+      },
     });
 };
 
 exports.getUser = (req, res) => {
+    console.log(req.params);
     const id = req.params.id * 1; // Convert the parameter to a number
     const user = users.find((el) => el.id === id);
 
@@ -33,10 +40,23 @@ exports.getUser = (req, res) => {
 
 
 exports.createUser = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route is not yet defined!'
-    });
+    const newId = users[users.length - 1].id + 1;
+    const newUser = Object.assign({ id: newId }, req.body);
+
+    users.push(newUser);
+
+    fs.writeFile(
+      `${__dirname}/dev-data/data/users.json`,
+      JSON.stringify(users),
+      (err) => {
+        res.status(201).json({
+          status: 'success',
+          data: {
+            user: newUser,
+          },
+        });
+      }
+    );
 };
 
 exports.updateUser = (req, res) => {
