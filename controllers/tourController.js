@@ -57,6 +57,7 @@ exports.getTour = (req, res) => {
   // we used the id(parameter) to find a tour with the exact id
   const id = req.params.id * 1; //converting strings to number
   const tour = tours.find((el) => el.id === id);
+  console.log(tour);
 
   // if(id > tours.length) {
   if (!tour) {
