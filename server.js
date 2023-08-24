@@ -23,5 +23,3 @@ app.listen(port, () => {
 500 INTERNAL SERVER ERROR
 */
 
-const x = 23;
-x = 63;
