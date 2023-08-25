@@ -11,6 +11,7 @@ router.param('id', tourController.checkID);
 // If not, send back 400(bad request)
 // Add it to the post handler stack
 
+
 router
 .route('/')
 .get(tourController.getAllTours)
