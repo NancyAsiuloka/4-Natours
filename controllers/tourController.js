@@ -127,7 +127,7 @@ exports.deleteTour = (req, res) => {
           message: 'Invalid id',
         });
       }
-// respond status
+// respond status code
       res.status(204).json({
         status: 'success',
         data: null,
