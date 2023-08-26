@@ -1,4 +1,4 @@
-// required express
+
 const express = require('express');
 const tourController = require('./../controllers/tourController');
 
