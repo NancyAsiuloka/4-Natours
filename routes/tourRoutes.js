@@ -2,6 +2,7 @@ const express = require('express');
 const tourController = require('./../controllers/tourController');
 
 // 3: ROUTES FOR TOURS
+
 const router = express.Router();
 
 // routes for the check id
