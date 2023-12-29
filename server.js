@@ -20,6 +20,12 @@ mongoose
     console.error('Error connecting to the database:', err.message);
   });
 
+  const tourSchema = new mongoose.Schema({
+    name: String,
+    rating: Number,
+    price: Number,
+  })
+
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
 // the environment in which a node app is running
