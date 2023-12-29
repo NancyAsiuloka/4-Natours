@@ -42,7 +42,11 @@ mongoose
     rating: 4.7,
     price: 497,
   });
-  testTour.save()
+  testTour.save().then(doc => {
+    console.log(`${doc} added!`);
+  }).catch(err => {
+    console.log('ERROR!:', err)
+  })
 
 
 // ENVIRONMENT VARIABLES
