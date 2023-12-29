@@ -5,15 +5,21 @@ const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE_URL ;
-mongoose.connect(DB, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-}).then(con => {
-  console.log(con.connections);
-  console.log('DB connected successfully')
-})
+
+const DB = process.env.DATABASE_PASSWORD.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log('DB connected successfully');
+  })
+  .catch((err) => {
+    console.error('Error connecting to the database:', err.message);
+  });
 
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
