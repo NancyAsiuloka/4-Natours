@@ -43,7 +43,7 @@ mongoose
     price: 497,
   });
   testTour.save().then(doc => {
-    console.log(`${doc} added!`);
+    console.log(doc);
   }).catch(err => {
     console.log('ERROR!:', err)
   })
