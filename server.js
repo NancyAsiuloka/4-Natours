@@ -34,7 +34,16 @@ mongoose
       type: Number,
       required: [true, 'A tour must have a price'],
     },
-  })
+  });
+  const Tour = mongoose.model('Tour', tourSchema);
+
+  const testTour = new Tour({
+    name: 'The Forest Hiker',
+    rating: 4.7,
+    price: 497,
+  });
+  testTour.save()
+
 
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
