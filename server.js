@@ -39,6 +39,7 @@ mongoose
 
   const testTour = new Tour({
     name: 'The Forest Hiker',
+    price: 997,
   });
 
 
