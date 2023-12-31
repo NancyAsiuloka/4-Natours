@@ -40,6 +40,8 @@ mongoose
   const testTour = new Tour({
     name: 'The Forest Hiker',
   });
+
+
   testTour.save().then(doc => {
     console.log(doc);
   }).catch(err => {
