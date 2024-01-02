@@ -11,7 +11,6 @@ mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
   }).then(() => {
     console.log('DB connected successfully');
   })
@@ -39,6 +38,7 @@ mongoose
   const testTour = new Tour({
     name: 'The Forest Hiker',
     price: 997,
+    rating: 4.7,
   });
 
 
