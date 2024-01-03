@@ -1,35 +1,6 @@
-const fs = require('fs');
-
-// Starting API handling request
-const tours = JSON.parse(
-    fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
-  );
+const Tour = require('./../models/tourModel')
 
 //2: ROUTE HANDLERS FOR TOURS
-
-// Check id
-exports.checkID = (req, res, next, val) => {
-  console.log(`Tour id is: ${val}`);
-
-  if(req.params.id = 1 > tours.length){
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID'
-    })
-  }
-  next();
-}
-
-exports.checkBody = (req, res, next) => {
-  if(!req.body.name || !req.body.price){
-    return res.status(400).json({
-      status: 'Fail',
-      message: 'Missing name or price'
-    });
-  }
-  next();
-};
-
 
 // get all tours
 exports.getAllTours = (req, res) => {
@@ -40,10 +11,10 @@ exports.getAllTours = (req, res) => {
     status: 'success',
     requestAt: req.requestTime,
     // do this whenever u are sending multiple objects
-    results: tours.length,
-    data: {
-      tours: tours,
-    },
+    // results: tours.length,
+    // data: {
+    //   tours: tours,
+    // },
   });
 };
 
@@ -56,47 +27,34 @@ exports.getTour = (req, res) => {
   console.log(req.params);
   // we used the id(parameter) to find a tour with the exact id
   const id = req.params.id * 1; //converting strings to number
-  const tour = tours.find((el) => el.id === id);
-  console.log(tour);
+  // const tour = tours.find((el) => el.id === id);
+  // console.log(tour);
 
-  // if(id > tours.length) {
-  if (!tour) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid id',
-    });
-  }
+  // // if(id > tours.length) {
+  // if (!tour) {
+  //   return res.status(404).json({
+  //     status: 'fail',
+  //     message: 'Invalid id',
+  //   });
+  // }
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour,
-    },
-  });
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: {
+  //     tour,
+  //   },
+  // });
 };
 
 
 // creating a new tour
 exports.createTour = (req, res) => {
-      // console.log(req.body);
-  // figure out the id of the new object
-  const newId = tours[tours.length - 1].id + 1;
-  const newTour = Object.assign({ id: newId }, req.body);
-
-  tours.push(newTour);
-
-  fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
-    JSON.stringify(tours),
-    (err) => {
-      res.status(201).json({
-        status: 'success',
-        data: {
-          tour: newTour,
-        },
-      });
-    }
-  );
+  res.status(201).json({
+    status: 'success',
+    // data: {
+    //   tour: newTour,
+    // },
+  });
 };
 
 // Handling Patch requests to update data
@@ -104,14 +62,7 @@ exports.createTour = (req, res) => {
 // with put, we expect our application receives the entire new updated object
 // with patch, we expect the properties that should be updated on the object
 exports.updateTour = (req, res) => {
-    if (req.params.id * 1 > tours.length) {
-        return res.status(404).json({
-          status: 'fail',
-          message: 'Invalid id',
-        });
-      }
-
-      res.status(200).json({
+    res.status(200).json({
         status: 'success',
         data: {
           tour: '<Updated tour here...>',
@@ -121,12 +72,6 @@ exports.updateTour = (req, res) => {
 
 // Handling the delete request
 exports.deleteTour = (req, res) => {
-    if (req.params.id * 1 > tours.length) {
-        return res.status(404).json({
-          status: 'fail',
-          message: 'Invalid id',
-        });
-      }
 // respond status code
       res.status(204).json({
         status: 'success',
