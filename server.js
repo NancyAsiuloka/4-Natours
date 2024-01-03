@@ -19,19 +19,6 @@ mongoose
   });
 
 
-  const testTour = new Tour({
-    name: 'The Hiker',
-    price: 998,
-  });
-
-
-  testTour.save().then(doc => {
-    console.log(doc);
-  }).catch(err => {
-    console.log('ERROR!:', err)
-  })
-
-
 // ENVIRONMENT VARIABLES
 // They are variables that are used to define
 // the environment in which a node app is running
