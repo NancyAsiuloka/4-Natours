@@ -1,7 +1,5 @@
 const Tour = require('./../models/tourModel')
 
-//2: ROUTE HANDLERS FOR TOURS
-
 // get all tours
 exports.getAllTours = (req, res) => {
   // what to do when someone hits this route
