@@ -66,13 +66,22 @@ exports.createTour = async (req, res) => {
   }
 };
 
-exports.updateTour = (req, res) => {
+exports.updateTour = async (req, res) => {
+  try{
+
+
     res.status(200).json({
-        status: 'success',
-        data: {
-          tour: '<Updated tour here...>',
-        },
-      });
+      status: 'success',
+      data: {
+        tour: '<Updated tour here...>',
+      },
+    });
+  } catch (err){
+    res.status(400).json({
+      status:'fail',
+      message: err,
+    })
+  }
 };
 
 // Handling the delete request
