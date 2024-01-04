@@ -45,6 +45,7 @@ exports.getTour = (req, res) => {
 
 // creating a new tour
 exports.createTour = async (req, res) => {
+  try{
   // const newTour =  new Tour({})
   // newTour.save()
 
@@ -55,6 +56,12 @@ exports.createTour = async (req, res) => {
       tour: newTour,
     },
   });
+  } catch (err) {
+    res.status(400).json({
+      status:'fail',
+      message: err,
+    })
+  }
 };
 
 exports.updateTour = (req, res) => {
