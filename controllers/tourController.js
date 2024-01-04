@@ -17,8 +17,6 @@ exports.getAllTours = (req, res) => {
 };
 
 
-// getting data by its id
-// how to specify params in the URL
 exports.getTour = (req, res) => {
   // req.params is an object that automatically assign the value to our parameter that we define
   // how to read parameters from the url by using req.params
@@ -46,19 +44,19 @@ exports.getTour = (req, res) => {
 
 
 // creating a new tour
-exports.createTour = (req, res) => {
+exports.createTour = async (req, res) => {
+  // const newTour =  new Tour({})
+  // newTour.save()
+
+  const newTour = await Tour.create(req.body);
   res.status(201).json({
     status: 'success',
-    // data: {
-    //   tour: newTour,
-    // },
+    data: {
+      tour: newTour,
+    },
   });
 };
 
-// Handling Patch requests to update data
-// we have 2 http methods to update data(put $ patch)
-// with put, we expect our application receives the entire new updated object
-// with patch, we expect the properties that should be updated on the object
 exports.updateTour = (req, res) => {
     res.status(200).json({
         status: 'success',
