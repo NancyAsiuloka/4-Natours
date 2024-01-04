@@ -23,29 +23,24 @@ exports.getAllTours = async (req, res) => {
 };
 
 
-exports.getTour = (req, res) => {
-  // req.params is an object that automatically assign the value to our parameter that we define
-  // how to read parameters from the url by using req.params
-  console.log(req.params);
-  // we used the id(parameter) to find a tour with the exact id
-  const id = req.params.id * 1; //converting strings to number
-  // const tour = tours.find((el) => el.id === id);
-  // console.log(tour);
+exports.getTour = async (req, res) => {
+  try{
+    const tour = await Tour.findById(req.params.id)
 
-  // // if(id > tours.length) {
-  // if (!tour) {
-  //   return res.status(404).json({
-  //     status: 'fail',
-  //     message: 'Invalid id',
-  //   });
-  // }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour,
+    },
+  });
+  } catch(err){
+    res.status(404).json({
+      status:'fail',
+      message: err,
+    })
+  }
 
-  // res.status(200).json({
-  //   status: 'success',
-  //   data: {
-  //     tour,
-  //   },
-  // });
+
 };
 
 
