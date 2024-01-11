@@ -39,3 +39,5 @@ mongoose
       console.log(err);
     }
   }
+
+   console.log(process.argv);
