@@ -3,6 +3,9 @@ const Tour = require('./../models/tourModel');
 // get all tours
 exports.getAllTours = async (req, res) => {
   try {
+    const queryObj = {...req.query};
+    const excludedFields = ['page', 'sort', 'limit', 'fields']
+
     console.log(req.query);
 
     const tours = await Tour.find(req.query);
