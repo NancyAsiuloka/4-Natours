@@ -3,14 +3,19 @@ const Tour = require('./../models/tourModel');
 // get all tours
 exports.getAllTours = async (req, res) => {
   try {
-    console.log(req.query)
+    console.log(req.query);
 
     // const tours = await Tour.find({
     //   duration: 5,
     //   difficulty: 'easy'
     // });
 
-    const tours = await Tour.find().where('duration').equals(5).where('difficulty').equals('easy')
+    // written using special mongoose method
+    const tours = await Tour.find()
+      .where('duration')
+      .equals(5)
+      .where('difficulty')
+      .equals('easy');
 
     res.status(200).json({
       status: 'success',
@@ -93,12 +98,12 @@ exports.updateTour = async (req, res) => {
 // Handling the delete request
 exports.deleteTour = async (req, res) => {
   try {
-    const tour = await Tour.deleteOne(req.params.id, req.body)
+    const tour = await Tour.deleteOne(req.params.id, req.body);
     // respond status code
     res.status(204).json({
       status: 'success',
       data: {
-        tour
+        tour,
       },
     });
   } catch (err) {
