@@ -25,9 +25,11 @@ mongoose
     try{
       await Tour.create(tours)
       console.log('Data successfully loaded!');
+
     }catch (err){
       console.log(err);
     }
+    process.exit();
   }
 
   // DELETING ALL DATA FROM COLLECTION
@@ -35,11 +37,13 @@ mongoose
     try{
       await Tour.deleteMany();
       console.log('Data successfully deleted!');
-      process.exit();
+
     }catch (err){
       console.log(err);
     }
+    process.exit();
   }
+
   if (process.argv[2] === '--import') {
     importData()
   } else if(process.argv[2] === '--delete'){
