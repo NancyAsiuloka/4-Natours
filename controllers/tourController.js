@@ -13,15 +13,31 @@ exports.getAllTours = async (req, res) => {
     // 1b)Advanced Filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
-    console.log(JSON.parse(queryStr))
 
     // const query = Tour.find(queryObj);
     let query = Tour.find(JSON.parse(queryStr));
 
     // 2) Sorting
      if(req.query.sort){
-      query = query.sort(req.query.sort)
+      const sortBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortBy);
+     } else {
+      query = query.sort('-createdAt')
      }
+
+    // 3) Field Limiting
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');  //create the field in the order specified in the db
+      query = query.select(fields);
+    } else {
+      query = query.select('-__v')
+    }
+
+    // 4) Pagination
+
+    // page=2&limit=10, 1-10=page1, 11-20=page2 ...
+    // calculate d skip according to the page value
+    query = query.skip(10).limit(10)
 
     // Execute Query
     const tours = await query;
