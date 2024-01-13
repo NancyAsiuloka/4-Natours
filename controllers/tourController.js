@@ -9,6 +9,7 @@ exports.getAllTours = async (req, res) => {
     const excludedFields = ['page', 'sort', 'limit', 'fields']
     excludedFields.forEach(el => delete queryObj[el]);
 
+    // 2)Advanced Filtering
     const query = Tour.find(queryObj);
 
     console.log(req.query)
