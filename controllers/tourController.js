@@ -3,6 +3,7 @@ const Tour = require('./../models/tourModel');
 // get all tours
 exports.getAllTours = async (req, res) => {
   try {
+    console.log(req.query)
     // Build Query
     // 1) Filtering
     const queryObj = {...req.query};
@@ -12,8 +13,8 @@ exports.getAllTours = async (req, res) => {
     // 2)Advanced Filtering
     const query = Tour.find(queryObj);
 
-    console.log(req.query)
     // { duration: { gte: '5' }, difficulty: 'easy' }
+    // { duration: { $gte: '5' }, difficulty: 'easy' }
 
     // // written using special mongoose method
     // const query = Tour.find()
