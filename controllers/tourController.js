@@ -12,7 +12,7 @@ exports.getAllTours = async (req, res) => {
 
     // 2)Advanced Filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$ ${match}`)
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
     console.log(JSON.parse(queryStr))
 
 
