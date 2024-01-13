@@ -4,6 +4,7 @@ const Tour = require('./../models/tourModel');
 exports.getAllTours = async (req, res) => {
   try {
     // Build Query
+    // 1) Filtering
     const queryObj = {...req.query};
     const excludedFields = ['page', 'sort', 'limit', 'fields']
     excludedFields.forEach(el => delete queryObj[el]);
@@ -11,6 +12,8 @@ exports.getAllTours = async (req, res) => {
     const query = Tour.find(queryObj);
 
     console.log(req.query)
+    // { duration: { gte: '5' }, difficulty: 'easy' }
+
     // // written using special mongoose method
     // const query = Tour.find()
     //   .where('duration')
