@@ -11,8 +11,8 @@ exports.getAllTours = async (req, res) => {
     excludedFields.forEach((el) => delete queryObj[el]);
 
     // 2)Advanced Filtering
-    const queryStr = JSON.stringify(queryObj);
-    queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$ ${match}`)
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$ ${match}`)
     console.log(JSON.parse(queryStr))
 
     // { duration: { gte: '5' }, difficulty: 'easy' }
