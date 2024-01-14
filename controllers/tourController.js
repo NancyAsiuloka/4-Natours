@@ -138,7 +138,7 @@ exports.getTourStats = async (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
-        tour,
+        stats,
       },
     });
   } catch (err){
