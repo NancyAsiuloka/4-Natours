@@ -59,7 +59,13 @@ const tourSchema = new mongoose.Schema({
 
   tourSchema.virtual('durationWeeks').get(function() {
     return this.duration / 7;
-  })
+  });
+
+//   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
+tourSchema.pre('save', function (next) {
+    //this points to the current doc being saved
+    console.log(this)
+})
 
   const Tour = mongoose.model('Tour', tourSchema);
   module.exports = Tour;
