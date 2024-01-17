@@ -62,7 +62,7 @@ const tourSchema = new mongoose.Schema({
   });
 
 //   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
-tourSchema.pre('save', function (next) {
+tourSchema.pre('save', function () {
     //this points to the current doc being saved
     console.log(this)
 })
