@@ -53,13 +53,13 @@ const tourSchema = new mongoose.Schema({
     },
     startDates: [Date]
   }, {
-    // toJSON: { virtuals: true},
-    // toObject: { virtuals: true},
+    toJSON: { virtuals: true},
+    toObject: { virtuals: true},
   });
 
-  // tourSchema.virtual('durationWeeks').get(function() {
-  //   return this.duration / 7;
-  // });
+  tourSchema.virtual('durationWeeks').get(function() {
+    return this.duration / 7;
+  });
 
 //   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
 tourSchema.pre('save', function (next) {
