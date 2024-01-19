@@ -53,7 +53,11 @@ const tourSchema = new mongoose.Schema({
         default: Date.now(),
         select: false,
     },
-    startDates: [Date]
+    startDates: [Date],
+    secretTour: {
+      type: Boolean,
+      default: false
+    }
   }, {
     toJSON: { virtuals: true},
     toObject: { virtuals: true},
@@ -63,22 +67,28 @@ const tourSchema = new mongoose.Schema({
     return this.duration / 7;
   });
 
-//   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
-tourSchema.pre('save', function (next) {
-    //this points to the current doc being saved
-    this.slug = slugify(this.name, {lower: true});
-    next();
-});
+// //   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
+// tourSchema.pre('save', function (next) {
+//     //this points to the current doc being saved
+//     this.slug = slugify(this.name, {lower: true});
+//     next();
+// });
 
 // tourSchema.pre('save', function (next) {
 //     consloe.log('Will save document..')
-//     next();
+//     next ();
 // });
 
 // tourSchema.post('save', function (doc, next) {
 //     console.log(doc);
 //     next();
 // });
+
+// QUERY MIDDLEWARE
+tourSchema.pre('find', function(next){
+
+  next();
+})
 
 
   const Tour = mongoose.model('Tour', tourSchema);
