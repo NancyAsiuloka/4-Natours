@@ -85,10 +85,11 @@ const tourSchema = new mongoose.Schema({
 // });
 
 // QUERY MIDDLEWARE
-tourSchema.pre('find', function(next){
+tourSchema.pre(/^find/, function(next){
   this.find({ secretTour: {$ne: true}})
   next();
 })
+
 
 
   const Tour = mongoose.model('Tour', tourSchema);
