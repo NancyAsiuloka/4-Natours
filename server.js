@@ -15,9 +15,6 @@ mongoose
   }).then(() => {
     console.log('DB connected successfully');
   })
-  .catch((err) => {
-    console.error('Error connecting to the database:', err.message);
-  });
 
 
 // ENVIRONMENT VARIABLES
