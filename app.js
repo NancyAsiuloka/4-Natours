@@ -44,6 +44,8 @@ app.all('*', (req, res, next) => {
     const err = new Error(`Can't find ${req.originalUrl} on this server!`)
     err.status = 'fail';
     err.statusCode = 404
+
+    next(err)
 })
 
 // Global error handler
@@ -55,6 +57,8 @@ app.use((err, req, res, next) => {
         status: 'err.status',
         message: err.message
     })
+
+    next()
 })
 
 module.exports = app;
