@@ -1,11 +1,11 @@
 // Requiring dot env module
 const mongoose = require('mongoose')
 
-process.on('uncaughtException', err => {
-  console.log('UNCAUGHT EXCEPTION! Shutting down...')
-  console.log(err.name, err.message)
-  process.exit(1)
-})
+// process.on('uncaughtException', err => {
+//   console.log('UNCAUGHT EXCEPTION! Shutting down...')
+//   console.log(err.name, err.message)
+//   process.exit(1)
+// })
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
@@ -37,11 +37,11 @@ const server = app.listen(port, () => {
 });
 
 // handling a promise rejection globally
-process.on('unhandledRejection', err => {
-  console.log(err.name, err.message)
-  console.log('UNHANDLED REJECTION! Shutting down...')
-  server.close(() => {
-    process.exit(1)
-  })
-})
+// process.on('unhandledRejection', err => {
+//   console.log(err.name, err.message)
+//   console.log('UNHANDLED REJECTION! Shutting down...')
+//   server.close(() => {
+//     process.exit(1)
+//   })
+// })
 
