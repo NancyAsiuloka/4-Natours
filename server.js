@@ -30,10 +30,7 @@ app.listen(port, () => {
   console.log(`App running on ${port}... `);
 });
 
-/*
-200 OK
-204 NO CONTENT
-201 CREATED
-404 NOT FOUND
-500 INTERNAL SERVER ERROR
-*/
+// handling a promise rejection globally
+process.on('unhandledRejection', err => {
+  console.log(err.name, err.message)
+})
