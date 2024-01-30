@@ -1,22 +1,24 @@
-const fs = require('fs');
 
-const users = JSON.parse(
-    fs.readFileSync(`${__dirname}/../dev-data/data/users.json`)
-  );
+const User = require('./../models/userModel');
+const catchAsync = require('./../utils/catchAsync')
+const AppError = require('./../utils/appError')
+
 
 // ROUTE HANDLER FOR USERS
-exports.getAllUsers = (req, res) => {
-    console.log(req.requestTime);
-    res.status(200).json({
-      status: 'success',
-      requestAt: req.requestTime,
-      // do this whenever u are sending multiple objects
-      results: users.length,
-      data: {
-        users: users,
-      },
-    });
-};
+exports.getAllUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find();
+
+  // Send Response
+  res.status(200).json({
+    status: 'success',
+    requestAt: req.requestTime,
+    // do this whenever u are sending multiple objects
+    results: users.length,
+    data: {
+      users: users,
+    },
+  });
+});
 
 exports.getUser = (req, res) => {
     const id = req.params.id * 1; // Convert the parameter to a number
