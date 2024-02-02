@@ -34,6 +34,7 @@ exports.login = catchAsync(async (req, res, next) => {
     // 2) Check if the user exists && password is correct
     const user = await User.findOne({email}).select('+password')
 
+    console.log(user);
 
     // 3) If everything is okay, send the token to the client
     const token = '';
