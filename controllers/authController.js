@@ -52,7 +52,13 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
+    // 1) Get token from header and check if its there
 
+    // 2) validate(verification) the token
+
+    // 3) check if the user still exists
+
+    // 4) check if the user changed password after the token was issued
 
     next();
 })
