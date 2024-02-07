@@ -90,3 +90,5 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+
+// Authorization is verifying if a certain user has the right to interact with a certain resource even if he's logged in
