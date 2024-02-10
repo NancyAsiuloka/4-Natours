@@ -85,7 +85,7 @@ userSchema.methods.createPasswordResetToken = function () {
   this.passwordResetToken = crypto
     .createHash('sha256')
     .update(resetToken)
-    .digets('hex');
+    .digest('hex');
 
     console.log({resetToken}, this.passwordResetToken)
 
