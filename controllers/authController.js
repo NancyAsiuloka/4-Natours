@@ -116,6 +116,7 @@ exports.forgetPassword = catchAsync(async(req, res, next) => {
   await user.save({ validateBeforeSave: false});
 
   // 3) Send it to user's email
+
 });
 
 exports.resetPassword = (req, res, next) => {}
