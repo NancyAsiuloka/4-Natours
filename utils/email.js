@@ -10,6 +10,7 @@ const sendEmail = async options => {
             pass: process.env.EMAIL_PASSWORD
         }
     });
+
     // 2)Define the email options
     const mailOptions = {
         from: 'nancy@gmail.com',
