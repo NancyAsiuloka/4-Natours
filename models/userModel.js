@@ -58,6 +58,14 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// Middleware to Update changedPasswordAt property for the user
+userSchema.pre('save', function(next){
+  if(!this.isModified('password' || this.isNew)) return next();
+
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+})
+
 // comparing the password
 userSchema.methods.correctPassword = async function (
   candidatePassword,
