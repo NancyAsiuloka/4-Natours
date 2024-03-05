@@ -19,6 +19,10 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.updateMe = (req, res, next) => {
+
+}
+
 exports.getUser = (req, res) => {
     const id = req.params.id * 1; // Convert the parameter to a number
     console.log('Searching for user with ID:', id);
