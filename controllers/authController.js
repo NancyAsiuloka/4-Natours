@@ -16,14 +16,22 @@ const signToken = (id) => {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
+  res.cookie('jwt', token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+    ),
+    secure: true,
+    httpOnly: true, // cookie will be removed when
+  });
+
   res.status(statusCode).json({
     status: 'Success',
     token,
     data: {
-      user
+      user,
     },
   });
-}
+};
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
@@ -166,33 +174,32 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
   // 2) If the token has not expired, and there's user, set the new password
   if (!user) {
-    return next(new AppError('Token is invalid or has expired', 400))
+    return next(new AppError('Token is invalid or has expired', 400));
   }
   // set the new password
-  user.password = req.body.password
-  user.passwordConfirm = req.body.passwordConfirm
-  user.passwordResetToken = undefined
-  user.passwordResetExpires = undefined
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
   await user.save();
 
   // 3) Update changedPasswordAt property for the user
-
 
   // 4) Log the user in, send JWT
   createSendToken(user, 200, res);
 });
 
-exports.updatePassword = catchAsync(async(req, res, next) => {
+exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select('password');
 
   // 2) Check if POSTed password is correct
-  if(!(await user.correctPassword(req.body.passwordCurrent, user.password))){
-    return next(new AppError('Your current password is wrong.', 401))
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError('Your current password is wrong.', 401));
   }
 
   // 3) If so, update password
-  user.password = req.body.password
+  user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   await user.save();
   // User.findByIdAndUpdate will NOT work as intended!
