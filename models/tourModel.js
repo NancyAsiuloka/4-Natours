@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const validator = require('validator');
+const User = require('../models/userModel')
 
 const tourSchema = new mongoose.Schema(
   {
@@ -122,7 +123,9 @@ tourSchema.pre('save', function (next) {
 });
 
 tourSchema.pre('save', function(next) {
+  const guides = this.guides.map(id => )
 
+  next();
 })
 
 // tourSchema.pre('save', function (next) {
