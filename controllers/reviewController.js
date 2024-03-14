@@ -1,7 +1,7 @@
 const Review = require('./../models/reviewModel');
 const APIFeatures = require('./../utils/apiFeatures')
 const catchAsync = require('./../utils/catchAsync')
-const AppError = require('./../utils/appError')
+// const AppError = require('./../utils/appError')
 
 exports.createReview = catchAsync(async(req, res, next) => {
     //1) Create a new review
