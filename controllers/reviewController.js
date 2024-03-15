@@ -8,7 +8,7 @@ exports.createReview = catchAsync(async(req, res, next) => {
     const newReview = await Review.create(req.body);
     //2) Respond with the new
     res.status(201).json({
-        status: 'success',
+        status: 'Success',
         data: {
           review: newReview,
         },
