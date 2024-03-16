@@ -22,7 +22,6 @@ exports.getAllReviews = catchAsync(async(req, res, next) => {
         res.status(200).json({
             status: 'success',
             requestAt: req.requestTime,
-            // do this whenever u are sending multiple objects
             results: reviews.length,
             data: {
               reviews
