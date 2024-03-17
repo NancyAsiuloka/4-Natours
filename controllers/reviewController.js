@@ -20,7 +20,7 @@ exports.getAllReviews = catchAsync(async(req, res, next) => {
 
         // Send Response
         res.status(200).json({
-            status: 'success',
+            status: 'Success',
             requestAt: req.requestTime,
             results: reviews.length,
             data: {
