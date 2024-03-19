@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
+const reviews = require('./../controllers/reviewController');
 
 const router = express.Router();
 
@@ -39,5 +40,11 @@ router
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
+
+  // POST /tour/2aedrteu7/reviews
+  // GET /tour/2aedrteu7/reviews
+  // GET /tour/2aedrteu7/reviews/4yu79i635
+
+  router.route('/:id/reviews')
 
 module.exports = router;
