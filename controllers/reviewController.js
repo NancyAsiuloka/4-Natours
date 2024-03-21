@@ -20,6 +20,7 @@ exports.createReview = catchAsync(async(req, res, next) => {
       });
 });
 
+
 exports.getAllReviews = catchAsync(async(req, res, next) => {
   const reviews = await Review.find()
 
