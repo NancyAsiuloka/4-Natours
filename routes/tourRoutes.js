@@ -1,7 +1,7 @@
 const express = require('express');
 const tourController = require('./../controllers/tourController');
 const authController = require('./../controllers/authController');
-const reviewController = require('./../controllers/reviewController');
+const reviewRouter = require('./../routes/reviewRoutes');
 
 // 3: ROUTES FOR TOURS
 const router = express.Router();
@@ -13,6 +13,18 @@ const router = express.Router();
 // If not, send back 400(bad request)
 // Add it to the post handler stack
 
+
+// POST /tour/2aedrteu7/reviews
+// GET /tour/2aedrteu7/reviews
+// GET /tour/2aedrteu7/reviews/4yu79i635
+
+// router
+//   .route('/:tourId/reviews')
+//   .post(
+//     authController.protect,
+//     authController.restrictTo('user'),
+//     reviewController.createReview,
+//   );
 router
   .route('/top-5-cheap')
   .get(tourController.aliasTopTours, tourController.getAllTours);
@@ -36,16 +48,6 @@ router
     tourController.deleteTour,
   );
 
-// POST /tour/2aedrteu7/reviews
-// GET /tour/2aedrteu7/reviews
-// GET /tour/2aedrteu7/reviews/4yu79i635
-
-router
-  .route('/:tourId/reviews')
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    reviewController.createReview,
-  );
+;
 
 module.exports = router;
