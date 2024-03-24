@@ -4,7 +4,7 @@ const authController = require('./../controllers/authController');
 
 
 // 3: ROUTES FOR TOURS
-const router = express.Router();
+const router = express.Router({ mergeParams: true});
 
 router
   .route('/')
