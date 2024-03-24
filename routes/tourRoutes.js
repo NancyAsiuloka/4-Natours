@@ -16,15 +16,6 @@ const router = express.Router();
 
 // POST /tour/2aedrteu7/reviews
 // GET /tour/2aedrteu7/reviews
-// GET /tour/2aedrteu7/reviews/4yu79i635
-
-// router
-//   .route('/:tourId/reviews')
-//   .post(
-//     authController.protect,
-//     authController.restrictTo('user'),
-//     reviewController.createReview,
-//   );
 
 router.use('/:tourId/reviews', reviewRouter);
 
