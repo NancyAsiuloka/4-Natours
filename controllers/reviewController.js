@@ -25,7 +25,7 @@ exports.getAllReviews = catchAsync(async(req, res, next) => {
   let filter = {};
   if(req.params.tourId) filter = {tour: req.params.tourId}
 
-  const reviews = await Review.find()
+  const reviews = await Review.find(filter)
 
         // Send Response
         res.status(200).json({
