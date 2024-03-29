@@ -3,7 +3,7 @@ const reviewController = require('./../controllers/reviewController');
 const authController = require('./../controllers/authController');
 
 
-// 3: ROUTES FOR TOURS
+//  3: ROUTES FOR TOURS
 const router = express.Router({ mergeParams: true});
 
 router
