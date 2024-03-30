@@ -1,7 +1,7 @@
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
-    const tour = await Tour.deleteOne(req.params.id, req.body);
+    const doc = await Model.deleteOne(req.params.id, req.body);
 
-  if(!tour){
+  if(!doc){
     return next(new AppError('No tour found with that ID', 404))
   }
 
