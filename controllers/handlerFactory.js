@@ -8,8 +8,6 @@ exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     // respond status code
     res.status(204).json({
       status: 'success',
-      data: {
-        tour,
-      },
+      data: null
     });
 });
