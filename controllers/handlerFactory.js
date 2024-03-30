@@ -1,3 +1,6 @@
+const catchAsync = require('../utils/catchAsync')
+
+
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     const doc = await Model.deleteOne(req.params.id, req.body);
 
