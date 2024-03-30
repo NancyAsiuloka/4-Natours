@@ -13,4 +13,3 @@ exports.deleteOne = Model => catchAsync(async (req, res, next) => {
       },
     });
 });
-
