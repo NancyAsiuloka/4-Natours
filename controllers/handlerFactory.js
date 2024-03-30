@@ -1,7 +1,6 @@
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 
-
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     const doc = await Model.deleteOne(req.params.id, req.body);
 
