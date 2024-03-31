@@ -84,7 +84,7 @@ exports.updateTour = catchAsync(async (req, res, next) => {
 });
 
 // Handling the delete request
-exports.deleteTour = factory.deleteOne(Tour)
+exports.deleteTour = factory.deleteOne({Tour})
 
 // exports.deleteTour = catchAsync(async (req, res, next) => {
 //     const tour = await Tour.deleteOne(req.params.id, req.body);
