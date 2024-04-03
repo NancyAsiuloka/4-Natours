@@ -15,4 +15,6 @@ router
     reviewController.createReview,
   );
 
+  router.route()
+
 module.exports = router;
