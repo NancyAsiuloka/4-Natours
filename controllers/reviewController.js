@@ -26,7 +26,7 @@ exports.getAllReviews = catchAsync(async(req, res, next) => {
   if(req.params.tourId) filter = {tour: req.params.tourId}
 
   const reviews = await Review.find(filter)
-  const filteredItems = items.filter(item => !item.deleted);
+  const filteredItems = reviews.filter(review => !review.deleted);
 
   // res.json(filteredItems);
         // Send Response
@@ -35,7 +35,7 @@ exports.getAllReviews = catchAsync(async(req, res, next) => {
             requestAt: req.requestTime,
             results: reviews.length,
             data: {
-              reviews,
+              // reviews,
               filteredItems
             },
           });
