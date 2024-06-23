@@ -76,6 +76,7 @@ reviewSchema.post('save', function () {
   this.constructor.calcAverageRatings(this.tour);
 });
 
+
 // findByIdAndUpdate
 // findByIdAndDelete
 
