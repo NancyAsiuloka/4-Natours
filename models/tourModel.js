@@ -135,6 +135,7 @@ tourSchema.virtual('reviews', {
 tourSchema.pre('save', function (next) {
   //this points to the current doc being saved
   this.slug = slugify(this.name, { lower: true });
+
   next();
 });
 
