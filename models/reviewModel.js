@@ -87,7 +87,6 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
   next();
 });
 
-
 reviewSchema.post(/^findOneAnd/, async function () {
   // await this.findOne(); does NOT work here, query has already executed
   if (this.r) await this.r.constructor.calcAverageRatings(this.r.tour)});
