@@ -82,6 +82,7 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
   // Fetch the document to be updated or deleted using the ID from the query
   this.r = await Review.findById(this.getQuery()._id);
   console.log(this.r);
+
   next();
 });
 
