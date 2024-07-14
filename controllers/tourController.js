@@ -86,22 +86,6 @@ exports.updateTour = catchAsync(async (req, res, next) => {
 // Handling the delete request
 exports.deleteTour = factory.deleteOne(Tour)
 
-// exports.deleteTour = catchAsync(async (req, res, next) => {
-//     const tour = await Tour.deleteOne(req.params.id, req.body);
-
-//   if(!tour){
-//     return next(new AppError('No tour found with that ID', 404))
-//   }
-
-//     // respond status code
-//     res.status(204).json({
-//       status: 'success',
-//       data: {
-//         tour,
-//       },
-//     });
-// });
-
 exports.getTourStats = catchAsync(async (req, res, next) => {
     const stats = await Tour.aggregate([
       {
