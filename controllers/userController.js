@@ -12,7 +12,7 @@ return newObj;
 }
 
 exports.getMe = (req, res, next) = {
-
+  req.params.id = req.user.id;
 }
 
 exports.deleteMe = catchAsync(async(req, res, next) => {
