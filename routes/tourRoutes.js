@@ -9,7 +9,6 @@ const router = express.Router();
 // router.param('id', tourController.checkID);
 
 
-
 // POST /tour/2aedrteu7/reviews
 // GET /tour/2aedrteu7/reviews
 
