@@ -8,7 +8,6 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
-
 // POST /tour/2aedrteu7/reviews
 // GET /tour/2aedrteu7/reviews
 
@@ -25,7 +24,11 @@ router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
 router
   .route('/')
   .get(tourController.getAllTours)
-  .post(authController.protect, authController.restrictTo('admin', 'lead-guide'), tourController.createTour);
+  .post(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    tourController.createTour,
+  );
 
 router
   .route('/:id')
@@ -36,7 +39,5 @@ router
     // authController.restrictTo('admin', 'lead-guide'),
     tourController.deleteTour,
   );
-
-;
 
 module.exports = router;
