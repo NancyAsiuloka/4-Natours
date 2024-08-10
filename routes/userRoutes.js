@@ -15,7 +15,6 @@ router.use(authController.protect);
 
 router.patch(
   '/updateMyPassword',
-  authController.protect,
   authController.updatePassword,
 );
 
