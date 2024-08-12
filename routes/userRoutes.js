@@ -23,7 +23,7 @@ router.get(
   userController.getMe,
   userController.getUser,
 );
-router.patch('/updateMe', authController.protect, userController.updateMe);
+router.patch('/updateMe', userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
 router
