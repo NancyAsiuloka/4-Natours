@@ -1,5 +1,4 @@
 const Tour = require('./../models/tourModel');
-const APIFeatures = require('./../utils/apiFeatures')
 const catchAsync = require('./../utils/catchAsync')
 const AppError = require('./../utils/appError')
 const factory = require('./handlerFactory')
@@ -13,26 +12,7 @@ exports.aliasTopTours = (req, res, next) => {
 
 
 // get all tours
-exports.getAllTours = catchAsync(async (req, res, next) => {
-    // Execute Query
-    const features = new APIFeatures(Tour.find(), req.query)
-      .filter()
-      .sort()
-      .limitFields()
-      .paginate();
-    const tours = await features.query;
-
-    // Send Response
-    res.status(200).json({
-      status: 'success',
-      requestAt: req.requestTime,
-      // do this whenever u are sending multiple objects
-      results: tours.length,
-      data: {
-        tours: tours,
-      },
-    });
-});
+exports.getAllTours = factory.getAll(Tour)
 
 exports.getTour = factory.getOne(Tour, { path: 'reviews' })
 // creating a new tour
