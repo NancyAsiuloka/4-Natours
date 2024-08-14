@@ -21,20 +21,6 @@ exports.deleteMe = catchAsync(async(req, res, next) => {
 })
 
 // ROUTE HANDLER FOR USERS
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-
-  // Send Response
-  res.status(200).json({
-    status: 'success',
-    requestAt: req.requestTime,
-    // do this whenever u are sending multiple objects
-    results: users.length,
-    data: {
-      users: users,
-    },
-  });
-});
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1) Create error if user POSTs password data
@@ -71,6 +57,8 @@ exports.createUser = (req, res) => {
     message: 'This route is not defined! Please use /signup instead',
   });
 };
+
+exports.getAllUsers = factory.getAll(User)
 
 exports.getUser = factory.getOne(User)
 // Do NOT update passwords with this!
