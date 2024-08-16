@@ -9,7 +9,6 @@ exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     return next(new AppError('No document found with that ID', 404))
   }
 
-    // respond status code
     res.status(204).json({
       status: 'success',
       data: null
