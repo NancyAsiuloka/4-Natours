@@ -49,27 +49,27 @@ const userSchema = new mongoose.Schema({
 });
 
 
-// userSchema.pre('save', async function (next) {
-//   if (!this.isModified('password')) return next();
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
 
-//   // Hash the password with a cost of 12
-//   this.password = await bcrypt.hash(this.password, 12);
+  // Hash the password with a cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
 
-//   // Delete the passwordConfirm field
-//   this.passwordConfirm = undefined;
+  // Delete the passwordConfirm field
+  this.passwordConfirm = undefined;
 
-//   // Update passwordChangedAt only if the document is new or modified
-//   this.passwordChangedAt = Date.now() - 1000; // Subtract 1 second to ensure the token is always created after the passwordChangedAt timestamp
-//   next();
-// });
+  // Update passwordChangedAt only if the document is new or modified
+  this.passwordChangedAt = Date.now() - 1000; // Subtract 1 second to ensure the token is always created after the passwordChangedAt timestamp
+  next();
+});
 
-// // Middleware to Update changedPasswordAt property for the user
-// userSchema.pre('save', function(next){
-//   if(!this.isModified('password' || this.isNew)) return next();
+// Middleware to Update changedPasswordAt property for the user
+userSchema.pre('save', function(next){
+  if(!this.isModified('password' || this.isNew)) return next();
 
-//   this.passwordChangedAt = Date.now() - 1000;
-//   next();
-// })
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+})
 
 userSchema.pre(/^find/, function(next){
   // this points to the current Query
