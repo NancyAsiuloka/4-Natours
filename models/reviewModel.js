@@ -18,18 +18,18 @@ const reviewSchema = new mongoose.Schema(
     tour: {
       type: mongoose.Schema.ObjectId,
       ref: 'Tour',
-      required: [true, 'Review must belong to a tour.']
+      required: [true, 'Review must belong to a tour.'],
     },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: [true, 'Review must belong to a user!.']
+      required: [true, 'Review must belong to a user!.'],
     },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 reviewSchema.pre(/^find/, function (next) {
@@ -41,33 +41,35 @@ reviewSchema.pre(/^find/, function (next) {
   //   select: 'name photo'
   // });
 
-    this.populate({
+  this.populate({
     path: 'user',
-    select: 'name photo'
+    select: 'name photo',
   });
 
   next();
 });
 
-reviewSchema.statics.calcAverageRatings = async function(tourId){
+reviewSchema.statics.calcAverageRatings = async function (tourId) {
   const stats = await this.aggregate([
     {
-      $match: { tour: tourId }
+      $match: { tour: tourId },
     },
     {
       $group: {
         _id: '$tour',
         nRating: { $sum: 1 },
-        avgRating: { $avg: '$rating' }
-      }
-    }
+        avgRating: { $avg: '$rating' },
+      },
+    },
   ]);
-  console.log(stats)
-}
+  console.log(stats);
+};
 
-reviewSchema.pre('save', function(next){
-
-})
+reviewSchema.pre('save', function (next) {
+  //  this points to current review
+  this.constructor.calcAverageRatings(this.tour);
+  next();
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;
