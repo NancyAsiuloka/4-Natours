@@ -66,7 +66,7 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
   console.log(stats);
 
   // Persist is to update the tour on the avg & n rating
-  Tour.findByIdAndUpdate(tourId, {
+  await Tour.findByIdAndUpdate(tourId, {
     ratingsQuantity: stats[0].nRating,
     ratingsAverage: stats[0].avgRating,
   })
