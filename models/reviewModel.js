@@ -63,7 +63,7 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
       },
     },
   ]);
-  console.log(stats);
+
 
   // Persist is to update the tour on the avg & n rating
   await Tour.findByIdAndUpdate(tourId, {
