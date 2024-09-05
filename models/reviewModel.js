@@ -76,6 +76,8 @@ reviewSchema.post('save', function () {
   this.constructor.calcAverageRatings(this.tour);
 });
 
+// findByIdAndUpdate
+
 reviewSchema.pre(/^findOneAnd/, function(next){
   await this.findOne()
 })
