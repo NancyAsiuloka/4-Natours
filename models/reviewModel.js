@@ -80,7 +80,7 @@ reviewSchema.post('save', function () {
 // findByIdAndDelete
 
 reviewSchema.pre(/^findOneAnd/, function(next){
-  const = await this.findOne()
+  const r = await this.findOne()
 })
 
 const Review = mongoose.model('Review', reviewSchema);
