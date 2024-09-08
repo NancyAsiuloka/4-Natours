@@ -79,11 +79,12 @@ reviewSchema.post('save', function () {
 // findByIdAndUpdate
 // findByIdAndDelete
 
-reviewSchema.pre(/^findOneAnd/, async function(next){
-  const r = await this.findOne()
-  console.log(r)
-
-})
+reviewSchema.pre(/^findOneAnd/, async function (next) {
+  // Store the document to be used in post middleware
+  this.r = await this.findOne(); // Don't execute the query again in post
+  console.log(this.r); // This will log the review before update/delete
+  next();
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;
