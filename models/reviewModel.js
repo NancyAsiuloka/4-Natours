@@ -80,8 +80,9 @@ reviewSchema.post('save', function () {
 // findByIdAndDelete
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
-  this.r = await this.findOne();
-  console.log(this.r);
+  // Fetch the document to be updated or deleted using the ID from the query
+  this.r = await Review.findById(this.getQuery()._id);
+  console.log(this.r); // Log the review if needed
   next();
 });
 
