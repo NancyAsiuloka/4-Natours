@@ -80,9 +80,8 @@ reviewSchema.post('save', function () {
 // findByIdAndDelete
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
-  // Store the document to be used in post middleware
-  this.r = await this.findOne(); // Don't execute the query again in post
-  console.log(this.r); // This will log the review before update/delete
+  this.r = await this.findOne();
+  console.log(this.r);
   next();
 });
 
