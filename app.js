@@ -66,7 +66,6 @@ app.use((req, res, next) => {
 // Test Middleware
 // creating another middleware to manipulate the request object
 app.use((req, res, next) => {
-    //adding the current time to the request
     req.requestTime = new Date().toISOString();
     next();
 });
