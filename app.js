@@ -56,7 +56,6 @@ app.use(hpp({
 // Serving static files from a folder & not from a route
 app.use(express.static(`${__dirname}/public`));
 
-
 // creating our own Middleware functions
 app.use((req, res, next) => {
     console.log('Hello from the middleware');
