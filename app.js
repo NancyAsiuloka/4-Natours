@@ -62,7 +62,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
 // Test Middleware
 // creating another middleware to manipulate the request object
 app.use((req, res, next) => {
