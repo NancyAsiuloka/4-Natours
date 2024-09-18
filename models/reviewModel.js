@@ -66,10 +66,13 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
   ]);
 
   // Persist is to update the tour on the avg rating & number of rating
-  await Tour.findByIdAndUpdate(tourId, {
-    ratingsQuantity: stats[0].nRating,
-    ratingsAverage: stats[0].avgRating,
-  })
+
+  if(stats.length > 0) {
+    await Tour.findByIdAndUpdate(tourId, {
+      ratingsQuantity: stats[0].nRating,
+      ratingsAverage: stats[0].avgRating,
+    })
+  }
 };
 
 reviewSchema.post('save', function () {
@@ -82,7 +85,7 @@ reviewSchema.post('save', function () {
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
   // Fetch the document to be updated or deleted using the ID from the query
-  this.r = await this.findOne();
+  this.r = await this.clone().findOne();
   console.log(this.r);
 
   next();
@@ -90,7 +93,8 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
 
 reviewSchema.post(/^findOneAnd/, async function () {
   // await this.findOne(); does NOT work here, query has already executed
-   await this.r.constructor.calcAverageRatings(this.r.tour)});
+   await this.r.constructor.calcAverageRatings(this.r.tour)
+  });
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;
