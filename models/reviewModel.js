@@ -91,7 +91,7 @@ reviewSchema.post('save', function () {
 reviewSchema.pre(/^findOneAnd/, async function (next) {
   // Fetch the document to be updated or deleted using the ID from the query
   this.r = await this.clone().findOne();
-  console.log(this.r);
+  // console.log(this.r);
 
   next();
 });
