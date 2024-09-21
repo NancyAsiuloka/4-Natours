@@ -11,3 +11,30 @@ class AppError extends Error{
 }
 
 module.exports = AppError;
+
+
+    // if (seller.plan_type === PlanType.COMMISSION) {
+    //   const sellerDetails = _.pick(seller, ["first_name", "last_name", "phone_number", "email", "_id"]);
+
+    //   const response = await PaymentService.createSubscriptionCustomer(sellerDetails);
+
+    //   await Seller.findOneAndUpdate(
+    //     { email: seller.email, _id: seller._id },
+    //     {
+    //       $set: { "payment_gateway.customer_code": response.customer_code },
+    //     },
+    //     { new: true }
+    //   );
+    // } else if (seller.plan_type === PlanType.SUBSCRIPTION) {
+    //   const sellerDetails = _.pick(seller, ["first_name", "last_name", "phone_number", "email", "_id"]);
+
+    //   const response = await PaymentService.createSubscriptionCustomer(sellerDetails);
+
+    //   await Seller.findOneAndUpdate(
+    //     { email: seller.email, _id: seller._id },
+    //     {
+    //       $set: { "payment_gateway.customer_code": response.customer_code },
+    //     },
+    //     { new: true }
+    //   );
+    // }
