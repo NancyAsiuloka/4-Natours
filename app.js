@@ -14,6 +14,9 @@ const reviewRouter = require('./routes/reviewRoutes');
 
 const app = express();
 
+app.set('view engine', 'pug');
+
+
 // 1) GLOBAL: First middlewares
     // Set security HTTP headers
     app.use(helmet())
