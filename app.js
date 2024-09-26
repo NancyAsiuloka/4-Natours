@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
@@ -15,7 +16,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const app = express();
 
 app.set('view engine', 'pug');
-
+app.set('views', path.join(__dirname, 'views'))
 
 // 1) GLOBAL: First middlewares
     // Set security HTTP headers
@@ -55,9 +56,6 @@ app.use(hpp({
         'price'
     ]
 }));
-
-// Serving static files from a folder & not from a route
-app.use(express.static(`${__dirname}/public`));
 
 // creating our own Middleware functions
 app.use((req, res, next) => {
