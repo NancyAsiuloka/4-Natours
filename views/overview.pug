@@ -9,12 +9,12 @@ block content
           .card__header
             .card__picture
               .card__picture-overlay &nbsp;
-              img.card__picture-img(src=`img/${tour.imageCover}`, alt=tour.name)
+              img.card__picture-img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`)
             h3.heading-tertiary
               span= tour.name
 
           .card__details
-            h4.card__sub-heading= tour.difficulty + ' ' + tour.duration + '-day tour'
+            h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
             p.card__text= tour.summary
             .card__data
               svg.card__icon
@@ -27,11 +27,11 @@ block content
             .card__data
               svg.card__icon
                 use(xlink:href='img/icons.svg#icon-flag')
-              span= tour.stops + ' stops'
+              span= `${tour.locations.length} stops`
             .card__data
               svg.card__icon
                 use(xlink:href='img/icons.svg#icon-user')
-              span= tour.maxGroupSize + ' people'
+              span= `${tour.maxGroupSize} people`
 
           .card__footer
             p
