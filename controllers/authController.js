@@ -73,6 +73,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // 1) Get token from header and check if its there
   let token;
+
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
