@@ -20,7 +20,7 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
     ),
     httpOnly: true, // cookie will be removed when
-  }
+  };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
@@ -70,7 +70,6 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
-
   // 1) Get token from header and check if its there
   let token;
 
@@ -131,6 +130,7 @@ exports.restrictTo = (...roles) => {
 // Forget & reset Password Functions
 exports.forgetPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTED email
+
   const user = await User.findOne({ email: req.body.email });
   if (!user)
     return next(new AppError('There is no user with email address.', 404));
