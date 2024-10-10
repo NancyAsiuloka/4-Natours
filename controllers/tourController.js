@@ -101,7 +101,6 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
 });
 
 // tours-withn/:distance/center/:latlng/unit/:unit
-
 // tours-within?distance=233&center=-40,45,unit=mi
 // tours-within/233/center/33.9820973960418,-118.22534483878016/unit/mi
 
