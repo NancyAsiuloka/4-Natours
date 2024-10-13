@@ -10,6 +10,7 @@ const filterObj = (obj, ...allowedFields) => {
   });
 
 return newObj;
+
 }
 
 exports.getMe = (req, res, next) => {
