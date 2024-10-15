@@ -134,6 +134,7 @@ tourSchema.virtual('reviews', {
 });
 
 
+
 // //   DOCUMENT MIDDLEWARE: runs before .save() and .create() command
 tourSchema.pre('save', function (next) {
   //this points to the current doc being saved
