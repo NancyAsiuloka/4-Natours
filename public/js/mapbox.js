@@ -19,4 +19,3 @@ locations.forEach(location => {
     .bindPopup(`<p>${location.description}</p>`);
 });
 
-const bounds = new mapBoxgl.LatLngBounds();
