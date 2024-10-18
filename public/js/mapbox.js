@@ -18,4 +18,3 @@ locations.forEach(location => {
     .addTo(map)
     .bindPopup(`<p>${location.description}</p>`);
 });
-
