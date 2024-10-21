@@ -21,4 +21,3 @@ locations.forEach(location => {
 
 
 
-
