@@ -20,4 +20,3 @@ locations.forEach(location => {
 });
 
 
-
