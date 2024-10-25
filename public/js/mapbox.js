@@ -12,7 +12,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Loop through the locations and add markers to the map
 locations.forEach(location => {
   L.marker([location.lat, location.lng])
     .addTo(map)
