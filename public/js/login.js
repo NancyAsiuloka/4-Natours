@@ -1,5 +1,6 @@
 const login = async(email, password ) => {
-  try {
+  console.log(email, password)
+    try {
     const res = await axios({
         method: 'POST',
         url: 'http://localhost:6000/api/v1/users/login',
