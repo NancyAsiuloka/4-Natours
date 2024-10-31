@@ -1,5 +1,6 @@
 const login = async(email, password ) => {
-     const res = await axios({
+  try {
+    const res = await axios({
         method: 'POST',
         url: 'http://localhost:6000/api/v1/users/login',
         data: {
@@ -8,6 +9,9 @@ const login = async(email, password ) => {
         }
     });
     console.log(res)
+  } catch (err){
+    console.log(err)
+  }
 };
 
 document.querySelector('.form').addEventListener('submit', e => {
