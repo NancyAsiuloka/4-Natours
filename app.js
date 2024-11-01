@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const cors = require('cors')
 const hpp = require('hpp');
 
 const AppError = require('./utils/appError');
@@ -15,6 +16,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
+app.use(cors())
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
 app.use(helmet());
+
 
 // using this middleware to handle the post request
 // Development Loggin
