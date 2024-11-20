@@ -9,6 +9,7 @@ const login = async(email, password ) => {
         }
     });
 
+    console.log(res.data)
     if(res.data.status === 'success'){
       alert('Logged in successfully!')
       window.setTimeout(() => {
