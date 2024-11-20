@@ -78,7 +78,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-  } else if(req.cookies.jwt){
+  } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
 
@@ -115,8 +115,34 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-// Authorization is verifying if a certain user has the right to interact with a certain resource even if he's logged in
+// Only for rendered pages, no error
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    // Verifies the token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
 
+    // 3) check if the user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next();
+    }
+
+    // 4) check if the user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+
+    // THERE IS A LOGGED IN USER
+    res.locals.user = currentUser;
+    next();
+  }
+  next();
+});
+
+// Authorization is verifying if a certain user has the right to interact with a certain resource even if he's logged in
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     // roles ["admin", "lead-guide"]. role=user
