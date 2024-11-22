@@ -43,6 +43,13 @@ app.use(
 // Development Loggin
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
+  app.use((req, res, next) => {
+    res.setHeader(
+        'Content-Security-Policy',
+        "default-src 'self'; connect-src 'self' ws://127.0.0.1:51415;"
+    );
+    next();
+});
 }
 
 // Limiting requests from same API
