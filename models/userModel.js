@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please provide an email'],
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'default.jpg',
+  },
   role: {
     type: String,
     enum: ['user', 'admin', 'guide', 'lead-guide'],
@@ -44,10 +47,9 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true,
-    select: false
-  }
+    select: false,
+  },
 });
-
 
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
@@ -64,18 +66,18 @@ userSchema.pre('save', async function (next) {
 });
 
 // Middleware to Update changedPasswordAt property for the user
-userSchema.pre('save', function(next){
-  if(!this.isModified('password' || this.isNew)) return next();
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password' || this.isNew)) return next();
 
   this.passwordChangedAt = Date.now() - 1000;
   next();
-})
+});
 
-userSchema.pre(/^find/, function(next){
+userSchema.pre(/^find/, function (next) {
   // this points to the current Query
-  this.find({active: {$ne: false}})
+  this.find({ active: { $ne: false } });
   next();
-})
+});
 
 // comparing the password
 userSchema.methods.correctPassword = async function (
@@ -107,7 +109,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(resetToken)
     .digest('hex');
 
-    console.log({resetToken}, this.passwordResetToken)
+  console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   return resetToken;
@@ -115,4 +117,3 @@ userSchema.methods.createPasswordResetToken = function () {
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
