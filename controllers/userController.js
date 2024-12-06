@@ -1,7 +1,22 @@
+const multer = require('multer');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory')
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/img/users');
+  },
+  filename: (req, file, cb) => {
+    // user-274889feqwhb98-23447.jpeg
+    const ext = file.mimetype.split('/')[1];
+
+  }
+})
+
+const upload = multer({ dest: 'public/img/users'});
+exports.uploadUserPhoto = upload.single('photo');
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {}
