@@ -28,6 +28,11 @@ exports.uploadTourImages = upload.fields([
 // upload.single('images')
 // upload.array('images', 5)
 
+exports.resizeTourImages = (req, res, next) => {
+  console.log(req.files)
+  next();
+}
+
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
