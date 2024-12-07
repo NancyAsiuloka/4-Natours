@@ -21,17 +21,45 @@ const upload = multer({
 });
 
 exports.uploadTourImages = upload.fields([
-  {name: 'imageCover', maxCount: 1},
-  {name: 'images', maxCount: 3}
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 },
 ]);
 
 // upload.single('images')
 // upload.array('images', 5)
 
-exports.resizeTourImages = (req, res, next) => {
-  console.log(req.files)
+exports.resizeTourImages = catchAsync(async (req, res, next) => {
+  if (!req.files.imageCover || !req.files.images) return next();
+
+  // 1) Cover image
+
+  req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+
+  await sharp(req.files.imageCover[0].buffer)
+    .resize(2000, 1333)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/tours/${req.body.imageCover}`);
+
+  // Images
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/tours/${filename}`);
+
+      req.body.images.push(filename);
+    }),
+  );
+  console.log(req.body.images)
   next();
-}
+});
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -141,7 +169,7 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
   // to calculate the radius
   // if the unit is in mi divide the distance by 3963.2
   // if the unit is in km divide the distance by 6378.1
-  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
 
   if (!lat || !lng) {
     next(
@@ -185,19 +213,19 @@ exports.getDistances = catchAsync(async (req, res, next) => {
       $geoNear: {
         near: {
           type: 'Point',
-          coordinates: [lng * 1, lat * 1]
+          coordinates: [lng * 1, lat * 1],
         },
         distanceField: 'distance',
         distanceMultiplier: multiplier,
-      }
+      },
     },
     {
       $project: {
         distance: 1,
-        name: 1
-      }
-    }
-  ])
+        name: 1,
+      },
+    },
+  ]);
 
   res.status(200).json({
     status: 'Success',
@@ -205,5 +233,4 @@ exports.getDistances = catchAsync(async (req, res, next) => {
       data: distances,
     },
   });
-
-})
+});
