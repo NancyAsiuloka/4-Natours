@@ -1,64 +1,60 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
+const htmlToText = require('html-to-text');
 
-// new Email(user, url).sendWelcome();
 module.exports = class Email {
-    constructor(user, url){
-        this.to = user.email;
-        this.firstName = user.name.split(' ')[0];
-        this.url = url
-        this.from = `Asiuloka Nancy<${process.env.EMAIL_FROM}>`;
+  constructor(user, url) {
+    this.to = user.email;
+    this.firstName = user.name.split(' ')[0];
+    this.url = url;
+    this.from = `Asiuloka Nancy<${process.env.EMAIL_FROM}>`;
+  }
+
+  newTransport() {
+    if (process.env.NODE_ENV === 'production') {
+      // Use production transport, e.g., SendGrid
+      return 1;
     }
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+  }
 
-    createTransport(){
-        if(process.env.NODE_ENV === 'production'){
-            // sendgrid
-            return 1;
-        }
-        return nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: process.env.EMAIL_PORT,
-            secure: false,
-            auth: {
-                user: process.env.EMAIL_USERNAME,
-                pass: process.env.EMAIL_PASSWORD
-            }
-        });
-    }
-
-    // send the actual email
-    send(template, subject){
-        // 1) Render HTML based on a pug template
-        const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`)
-
-        // 2) Define the email options
-        const mailOptions = {
-            from: 'Asiuloka Nancy<mama@gmail.com>',
-            to: options.email,
-            subject: options.subject,
-            text: options.message,
-        }
-
-        // 3) Create a transport and send email
-
-
-
-    }
-
-    sendWelcome(){
-        this.send('welcome', 'Welcome to the Natours Family!')
-    }
-}
-
-const sendEmail = async options => {
+  // Send the actual email
+  async send(template, subject) {
+    // 1) Render HTML based on a pug template
+    const html = pug.renderFile(
+      `${__dirname}/../views/emails/${template}.pug`,
+      {
+        firstName: this.firstName,
+        url: this.url,
+        subject,
+      }
+    );
 
     // 2) Define the email options
+    const mailOptions = {
+      from: this.from,
+      to: this.to,
+      subject,
+      html,
+      text: htmlToText.fromString(html),
+    };
 
-    // 3) Send the email
-    // console.log('Email Options:', options);
-    await transporter.sendMail(mailOptions)
-    .then(info => console.log('Email sent:', info))
-    .catch(error => console.error('Error sending email:', error));
-}
+    // 3) Create a transport and send email
+    await this.newTransport()
+      .sendMail(mailOptions)
+      .then((info) => console.log('Email sent:', info))
+      .catch((error) => console.error('Error sending email:', error));
+  }
 
-module.exports = sendEmail;
+  async sendWelcome() {
+    await this.send('welcome', 'Welcome to the Natours Family!');
+  }
+};
