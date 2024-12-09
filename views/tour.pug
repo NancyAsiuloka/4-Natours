@@ -4,7 +4,7 @@ include _reviewCard
 block append head
   link(rel='stylesheet', href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', integrity='sha256-p0t2zzjDn7eS9ZHeZ5nBFEpPuQ1jQKj8xOqu4vAGGoQ=', crossorigin='')
   script(src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', integrity='sha256-G3JsyVbVFt4Ev6xkMGJjHm5J4EmL8ININpr8Qlwrn3Y=', crossorigin='')
-
+  script(src='https://js.stripe.com/v3/')
 
 mixin overviewBox(label, text, icon)
   .overview-box__detail
