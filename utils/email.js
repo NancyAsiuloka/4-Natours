@@ -13,7 +13,9 @@ module.exports = class Email {
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
       // Use production transport, e.g., SendGrid
-      return 1;
+      return nodemailer.createTransport({
+        service:
+      });
     }
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
