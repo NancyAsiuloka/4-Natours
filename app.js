@@ -39,6 +39,14 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy',
+    "default-src 'self'; script-src 'self' https://js.stripe.com; connect-src 'self' ws://127.0.0.1:65045;"
+  );
+  next();
+});
+
+
 
 // using this middleware to handle the post request
 // Development Loggin
