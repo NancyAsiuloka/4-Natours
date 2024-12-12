@@ -28,7 +28,6 @@ app.set('views', path.join(__dirname, 'views'));
 // Serving static files from a folder & not from a route
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // Set security HTTP headers
 app.use(
   helmet.contentSecurityPolicy({
