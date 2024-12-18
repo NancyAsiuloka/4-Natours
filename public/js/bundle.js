@@ -12944,7 +12944,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 var stripePromise = (0, _stripeJs.loadStripe)('pk_test_51QUAXeAcPH5FkzkovQjueqTwBIisrak88FJVS5XO9O8JTvtGJ2qZPjdF78gJDBgVfT2tOg1GxKqGgwWG30Kqufq2001ZfII7mN');
 var bookTour = exports.bookTour = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(tourId) {
-    var session, stripe;
+    var session, stripe, result;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -12962,21 +12962,27 @@ var bookTour = exports.bookTour = /*#__PURE__*/function () {
           stripe = _context.sent;
           _context.next = 10;
           return stripe.redirectToCheckout({
-            sessionId: session.data.session.id
+            sessionId: session.data.session.url
           });
         case 10:
-          _context.next = 16;
+          result = _context.sent;
+          console.log(result);
+          if (result.error) {
+            console.error('Stripe Checkout Error:', result.error.message);
+            alert('There was an issue with the payment redirect. Please try again.');
+          }
+          _context.next = 19;
           break;
-        case 12:
-          _context.prev = 12;
+        case 15:
+          _context.prev = 15;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           (0, _alert.showAlert)('error', _context.t0);
-        case 16:
+        case 19:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 15]]);
   }));
   return function bookTour(_x) {
     return _ref.apply(this, arguments);
@@ -13212,7 +13218,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57130" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58709" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

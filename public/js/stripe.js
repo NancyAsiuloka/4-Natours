@@ -16,9 +16,15 @@ export const bookTour = async (tourId) => {
 
     // 2) Create checkout form + charge credit card
     const stripe = await stripePromise;
-    await stripe.redirectToCheckout({
-      sessionId: session.data.session.id,
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.data.session.url,
     });
+    console.log(result)
+
+    if (result.error) {
+      console.error('Stripe Checkout Error:', result.error.message);
+      alert('There was an issue with the payment redirect. Please try again.');
+    }
   } catch (err) {
     console.log(err);
     showAlert('error', err);
