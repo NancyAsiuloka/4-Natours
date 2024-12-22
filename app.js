@@ -108,7 +108,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
+app.use(compression())
 
 // Routes Mounting
 app.use('/', viewRouter);
