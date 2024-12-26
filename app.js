@@ -96,7 +96,7 @@ app.use(
 
 // creating our own Middleware functions
 app.use((req, res, next) => {
-  console.log('Hello from the middleware');
+  // console.log('Hello from the middleware');
   next();
 });
 
@@ -108,7 +108,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(compression())
+app.use(compression());
 
 // Routes Mounting
 app.use('/', viewRouter);
