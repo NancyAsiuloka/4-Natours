@@ -25,6 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL: First middlewares
 
+// Implement CORS
 app.use(cors())
 
 // Serving static files from a folder & not from a route
