@@ -33,6 +33,9 @@ app.use(cors());
 //   origin: "https://www.natours.com"
 // }))
 
+app.options('*', cors());
+// map.options('/api/v1/tours/:id', cors())
+
 // Serving static files from a folder & not from a route
 app.use(express.static(path.join(__dirname, 'public')));
 
