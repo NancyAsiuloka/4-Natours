@@ -26,7 +26,12 @@ app.set('views', path.join(__dirname, 'views'));
 // 1) GLOBAL: First middlewares
 
 // Implement CORS
-app.use(cors())
+app.use(cors());
+// Access-Control-Allow-Origin *
+// api.natours.com, front-end natours.com
+// app.use(cors({
+//   origin: "https://www.natours.com"
+// }))
 
 // Serving static files from a folder & not from a route
 app.use(express.static(path.join(__dirname, 'public')));
