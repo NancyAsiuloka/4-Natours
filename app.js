@@ -19,12 +19,13 @@ const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
-app.use(cors())
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL: First middlewares
+
+app.use(cors())
 
 // Serving static files from a folder & not from a route
 app.use(express.static(path.join(__dirname, 'public')));
