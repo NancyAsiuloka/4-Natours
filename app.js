@@ -24,7 +24,6 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL: First middlewares
-
 // Implement CORS
 app.use(cors());
 // Access-Control-Allow-Origin *
